@@ -48,6 +48,7 @@ private:
 		}
 
 	}
+	// se efectuiaza un deep Copy
 	CursValutar(const CursValutar& curs) :idValuta(curs.idValuta){
 		this->denumireValuta = curs.denumireValuta;
 		this->tipCurs = curs.tipCurs;

@@ -120,7 +120,7 @@ private:
 	}
 
 	
-
+	// setter pentru membrul istoric
 	void setIstoric(const float* noulIstoric, int nouNrZile) {
 		delete[] istoric;
 
@@ -180,12 +180,56 @@ private:
 		return *this;
 	}
 
-	// Operator []
+	// Operator [] de indexare
 	float operator[](int index) const {
 		if (index < 0 || index >= nrZile)
 			return -1.0f;
 		return istoric[index];
 	}
+	// operatorul de negare
+	bool operator!()
+	{
+		return (istoric != nullptr);
+	}
+
+	// incrementare prefixata  // preincrementare  
+	CursValutar& operator++() {
+		nrZile = nrZile + 5;
+		return *this;
+	}
+
+	// incrementare postfixata // postincrementare
+	CursValutar operator++(int)
+	{
+		CursValutar copie = *this;
+		this->nrZile += 7;
+		return copie;
+	}
+
+	// operatorul de imultire 
+	CursValutar operator*(float valoare) {
+		CursValutar copie = *this; 
+			copie.nrZile = copie.nrZile * valoare;
+		return copie;
+
+	}
+	explicit operator int() {
+		return nrZile;
+	}
+
+	// operatorul de indexare suprascriere 
+
+	float& operator[](int i) {
+		if (this->istoric != nullptr && i > 0 && i<nrZile)  {
+			return this->istoric[i];
+		}
+	
+	}
+
+
+
+friend CursValutar operator*(float istoric, CursValutar curs);
+	
 
 
 
